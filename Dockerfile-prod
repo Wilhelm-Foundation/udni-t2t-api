@@ -5,7 +5,8 @@ COPY package*.json ./
 COPY tsconfig.json ./
 RUN npm install
 COPY src src
-COPY phenopacket-schema/src phenopacket-schema/src
+COPY phenopacket-schema phenopacket-schema
+#COPY phenopacket-schema/src phenopacket-schema/src
 COPY apischema.json ./
 
 # begin production build
@@ -21,7 +22,8 @@ COPY package*.json ./
 COPY tsconfig.json ./
 RUN npm ci --only=production
 COPY --from=build-stage /usr/src/app/dist ./dist
-COPY --from=build-stage /usr/src/app/phenopacket-schema/src ./phenopacket-schema/src
+COPY --from=build-stage /usr/src/app/phenopacket-schema ./phenopacket-schema
+#COPY --from=build-stage /usr/src/app/phenopacket-schema/src ./phenopacket-schema/src
 COPY --from=build-stage /usr/src/app/apischema.json .
 
 EXPOSE 3000
