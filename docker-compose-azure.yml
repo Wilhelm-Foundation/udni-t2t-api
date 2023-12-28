@@ -10,6 +10,9 @@ services:
       - mongo
     environment:
       NODE_ENV: ${NODE_ENV:-production}
+      DATABASE_URL: mongodb://mongo/mongodb
+      ALLOWED_ORIGIN: https://tip2toe.azurewebsites.net
+      API_URL: https://tip2toeapi.azurewebsites.net
     command: "node /app/dist/index.js"
   mongo:
     image: mongo
