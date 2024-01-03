@@ -29,14 +29,7 @@ app.get("/status", async (req, res) => {
     readyState,
   });
 });
-app.get("/hello1", async (req, res) => {
-  const { readyState } = mongoose.connection;
-  res.status(readyState === 1 ? 200 : 500).send({
-    status: readyState === 1 ? "OK" : "",
-    version: "1.1.0",
-    readyState,
-  });
-});
+
 app.use("/api/v1", api);
 
 async function main() {
